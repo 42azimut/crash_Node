@@ -1,26 +1,13 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Node Js | <%= title %></title>
-</head>
+<%- include("./partials/head.ejs") %>
+
 <body>
-  <nav>
-    <div class="site-title">
-      <a href="/">Blog Jayden</a>
-      <p>a Net Azimut Site for Node JS</p>
-    </div>
-    <ul>
-      <li><a href="/">blogs Home</a></li>
-      <li><a href="/about">about</a></li>
-      <li><a href="/blogs/create">New Blog</a></li>
-    </ul>
-  </nav>
+  <%- include("./partials/nav.ejs") %>
 
   <div class="not-found content">
-    oop~ Page not gone~ :)
+    OOPS, page not found :)
   </div>
+
+  <%- include("./partials/footer.ejs") %>
 </body>
 </html>

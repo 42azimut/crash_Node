@@ -19,3 +19,9 @@
       3rd) app.get('/', func)
   4th) response
   
+## 10 GET, POST, DELETE, PUT Request
+- GET requests to get a resource
+- POST requests to create new data (eg. a new blog)
+- DELETE requests to delete data (eg. delete a blog)
+- PUT requests to update data  (eg. update a blog)
+
