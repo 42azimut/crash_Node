@@ -25,3 +25,8 @@
 - DELETE requests to delete data (eg. delete a blog)
 - PUT requests to update data  (eg. update a blog)
 
+
+=================
+# Node.js App From Scratch | Express, MongoDB & Google OAuth
+## by Traversy Media 
+[Node.js App From Scratch | Express, MongoDB & Google OAuth](https://www.youtube.com/watch?v=SBvmnHTQIPY&list=LL&index=1&t=1515s)
