@@ -8,7 +8,7 @@ const blogRoutes = require('./routes/blogRoutes');
 const app = express();
 
 // connect to Cloud Mongodb URI
-const dbURI = 'mongodb+srv://azimutuniverse:1234@cluster0.20jsw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const dbURI = 'mongodb+srv://azimutuniverse:****@cluster0.20jsw.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(3000, console.log('mongo cloud db connected')))
   .catch((err) => console.log(err));
