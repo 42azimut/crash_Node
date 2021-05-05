@@ -48,6 +48,17 @@
 - `mongodb+srv://<userAccount>:<password>@cluster0.20jsw.mongodb.net/<DB_NAME>?retryWrites=true&w=majority`
 
 
-[connect your application ]<img src="https://github.com/42azimut/node_Study/nodeZScratch/imgREADME/connect.png" width="300px">
+## express-handlebars
+```
+// app.js
+app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }));
+app.set('view engine', '.hbs');
+```
+- 기본레이아웃 및 확장자 설정: views/layouts/main.hbs 
 
-  
+### main.hbs
+- {{{body}}}    : 주의! 중괄호 3개  여기에 view에 작성된 컨텐츠가 디스플레이됨
+
+
+## Index Routes
+- `const router = express.Router()`
