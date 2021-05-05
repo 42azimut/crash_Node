@@ -97,5 +97,4 @@ app.set('view engine', '.hbs');
       res.render('login', {
         layout: 'login'
       });
-});
   ```
