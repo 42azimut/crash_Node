@@ -43,5 +43,11 @@
       - 개발모드 실행 :  `npm run dev`
       - 배포모드 실행 :  `npm start`
 
+## Cloud MongoDB Connection
+- Clusters - connect
+- `mongodb+srv://<userAccount>:<password>@cluster0.20jsw.mongodb.net/<DB_NAME>?retryWrites=true&w=majority`
+
+
+[connect your application ]<img src="https://github.com/42azimut/node_Study/nodeZScratch/imgREADME/connect.png" width="300px">
 
   

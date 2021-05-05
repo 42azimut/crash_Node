@@ -33,7 +33,7 @@ router.route('/:id')
       next(err);
     }
   })
-  .delete(async (req, res, next) => {
+  .delete(async (req, res, next) => { 
     try {
       const result = await Comment.remove({ _id: req.params.id });
       res.json(result);
