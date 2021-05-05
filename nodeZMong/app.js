@@ -1,16 +1,16 @@
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
 const morgan = require('morgan');
 const nunjucks = require('nunjucks');
 const dotenv = require('dotenv');
 
 const connect = require('./schemas');
-const indexRouter = require('./routes');
-//const usersRouter = require('./routes/users');
-//const commentsRouter = require('./routes/comments');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const commentsRouter = require('./routes/comments');
 
 dotenv.config({ path: './config/config.env' });
+
 
 const app = express();
 app.set('port', process.env.PORT || 3000);
@@ -21,25 +21,22 @@ nunjucks.configure('views', {
 });
 connect();
 
-
-
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-// app.use('/comments', commentsRouter);
-
+app.use('/users', usersRouter);
+app.use('/comments', commentsRouter);
 
 app.use((req, res, next) => {
-  const error = new Error(`${req.method}, ${req.url} 라우터가 없습니다.`);
+  const error =  new Error(`${req.method} ${req.url} 라우터가 없습니다.`);
   error.status = 404;
   next(error);
 });
 
-app.use((req, res, next) => {
+app.use((err, req, res, next) => {
   res.locals.message = err.message;
   res.locals.error = process.env.NODE_ENV !== 'production' ? err : {};
   res.status(err.status || 500);

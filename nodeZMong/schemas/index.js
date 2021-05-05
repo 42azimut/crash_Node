@@ -13,6 +13,8 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
+// // 몽구스 사용시 노드교과서 버전! 
 //   if (process.env.NODE_ENV !== 'production') {
 //     mongoose.set('debug', true);
 //   }

@@ -1,3 +1,21 @@
+// const express = require('express');
+// const User = require('../schemas/user');
+
+// const router = express.Router();
+
+// router.get('/', async (req, res, next) => {
+//   try {
+//     const users = await User.find({});
+//     res.render('mongoose', { users });
+//   } catch (err) {
+//     console.log(err);
+//     //next(err);
+//   }
+// });
+//
+//module.exports = router;
+
+
 const express = require('express');
 const User = require('../schemas/user');
 
@@ -8,7 +26,7 @@ router.get('/', async (req, res, next) => {
     const users = await User.find({});
     res.render('mongoose', { users });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     next(err);
   }
 });
