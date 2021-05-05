@@ -62,3 +62,40 @@ app.set('view engine', '.hbs');
 
 ## Index Routes
 - `const router = express.Router()`
+- app.js 에서 받아 미들웨어 연결! 
+- `app.use('/', indexRouter);
+
+## Materialize & Font Awesome
+[materialize](https://materializecss.com/getting-started.html)
+
+```
+ <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+```
+- main.hbs 에 연결
+  - `https://cdnjs.com/` 
+- font-awesome 검색
+  - `https://cdnjs.com/libraries/font-awesome/5.12.0-2`
+
+
+## Static folder - public
+`app.use(express.static(path.join(__dirname, 'public')));`
+- 위처럼 public 폴더 설정하면
+-  main.hbs 에 스타일css 링크 넣을때 public 안해도 됨! 
+- 기본설정으로 css는 public에 있음!
+- 이미지, 자바스크립트 파일등 
+
+## Login Layout
+- routes/index.js 에서 렌더할 페이지 두번째 인자로 layout 설정
+- views/layouts/index.hbs  여기views 레이아웃을 설정!
+  ```
+    router.get('/', (req, res) => {
+      res.render('login', {
+        layout: 'login'
+      });
+});
+  ```
