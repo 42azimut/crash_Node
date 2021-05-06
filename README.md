@@ -98,3 +98,66 @@ app.set('view engine', '.hbs');
         layout: 'login'
       });
   ```
+
+## Start Google Login APIs
+- APIs & Services (사용자 동의 해야함)
+- 구글+ API - create credential
+-   OAuth 클라이언트 Id 만들기 
+  - 애플 유형 : 웹 애플
+  - 이름 : 웹 클라이언트
+  - 승인된 리디렉션 URI : http:// .../auth/google/callback
+
+## Passport Intro
+- [passport strategies](http://www.passportjs.org/packages/)
+- passport-google-oauth20
+- 유저 정보를 디비에 저장하는 콜백 함수
+```
+var GoogleStrategy = require('passport-google-oauth20').Strategy;
+
+passport.use(new GoogleStrategy({
+    clientID: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://www.example.com/auth/google/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ googleId: profile.id }, function (err,   user) {
+      return cb(err, user);  
+    });
+  }
+));
+
+```
+
+## User model
+- function(passport) ....
+
+## Passport Google Strategy
+```
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id, function(err, user) {
+    done(err, user);
+  });
+});
+```
+
+## Auth Routes
+- /routes/auth.js
+```
+// @desc  Auth with Google
+// @route GET /auth/google
+router.get('/google', passport.authenticate('google', { scope: [ 'profile' ] }));
+
+// @desc  Google auth callback
+// @route GET /auth/google/callback
+router.get(
+  '/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/' }), 
+  (req, res) => {
+  res.redirect('/dashboard')
+});
+
+```
