@@ -193,3 +193,46 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
 
 ```
 
+## Stroy Models
+- title, body, status(public, private)
+```
+- user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
+```
+
+## Dashboard Stories
+- routes/index.js   에 스토리 모델 추가
+- `await Story.find({ user: req.body.id }).lean()`  //lean()옵션 : 플레인 자바스크립트 객체 형태로 사용 **not 몽구스다큐먼트
+
+- dashboard.hbs 작성
+```
+<h5>DashBoard</h5>
+<h3>Welcome {{name}}</h3>
+<p>HEre are you Stories</p>
+{{#if stories}}
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each stories}}
+        <tr>
+          <td><a href="/storis/{{_id}}"></a>{{title}}</td>
+          <td>{{created}}</td>
+          <td><span class="dash-status">{{status}}</span></td>
+          <td></td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+<p>You have not created any stories</p>
+{{/if}}
+```
