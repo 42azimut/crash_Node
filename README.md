@@ -161,3 +161,35 @@ router.get(
 });
 
 ```
+
+## Save Google Profile Data
+
+
+## Store Sessions In Databases
+- store: MongoStore.create({ mongoUrl ....})  #이걸 사용해야 에러 안남! 버전차이?
+```
+// Session
+app.use(session({
+  secret: 'cat secret',
+  resave: false,
+  saveUninitaillzied: false,
+  // store: new MongoStore({ mongooseConnection: mongoose.connection })
+  store: MongoStore.create({ mongoUrl: process.env.MONGO_URI})
+}))
+```
+- 위 세션 미들웨어를 통해 아틀라스 몽고디비 콜렉션에 세션이 저장됨
+
+- 라우터/index.js  : firstname: req.user.firstName 담아 뷰에 전달가능 {{firstname}}
+```
+// @desc  Dashboard
+// @route GET /dashboard
+router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본인)이 대시보드에 들어오면 대시보드..
+  console.log(req.user)
+  res.render('dashboard', {
+    firstname: req.user.firstName,  // 두번째 인자에 객체형태로 자료를 담아 뷰에 전달할수 있다. 
+    disName: req.user.displayName,
+  });
+});
+
+```
+
