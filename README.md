@@ -204,24 +204,14 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
 
 ## Dashboard Stories
 - routes/index.js   에 스토리 모델 추가
-- `await Story.find({ user: req.body.id }).lean()`  //lean()옵션 : 플레인 자바스크립트 객체 형태로 사용 **not 몽구스다큐먼트
+- `await Story.find({ user: req.body.id }).lean()`  //lean()옵션 : 플레인 자바스크립트 객체 형태로 사용 **not 몽구스다큐먼트**
 
 - dashboard.hbs 작성
 ```
-<h5>DashBoard</h5>
 <h3>Welcome {{name}}</h3>
 <p>HEre are you Stories</p>
 {{#if stories}}
-  <table class="striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
+  ...
       {{#each stories}}
         <tr>
           <td><a href="/storis/{{_id}}"></a>{{title}}</td>
@@ -236,3 +226,20 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
 <p>You have not created any stories</p>
 {{/if}}
 ```
+
+## Add Story
+- adding ckeditor
+  - [cdnjs](https://cdnjs.com/libraries/ckeditor)
+  - main.hbs 에 스크립트 붙이기! "
+  -   CKEDITOR.replace('body', {plugin: '....'})   #add.hbs textarea name="body"  에 연결
+
+- body parser  미들웨어
+  ```
+    //Body Parser in app.js
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+  ```
+- stories.js router 
+  - 포스트 방식 으로 디비애 저장
+  `req.body.user = req.user.id`
+  `await Story.create(req.body);` 
