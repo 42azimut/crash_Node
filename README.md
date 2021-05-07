@@ -243,3 +243,10 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
   - 포스트 방식 으로 디비애 저장
   `req.body.user = req.user.id`
   `await Story.create(req.body);` 
+
+## Format DAte HandleBars Helper
+- 핸들바 helpers formatDate fn 작성
+- app.js 헬퍼를 핸들바에 연결
+- dashboard.js  
+  - `<td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>`
+
