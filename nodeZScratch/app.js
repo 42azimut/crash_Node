@@ -32,27 +32,48 @@ if (process.env.NODE_ENV === 'development') {
 app.use(session({
   secret: 'cat secret',
   resave: false,
-  saveUninitaillzied: false,
+  saveUninitialized: false,
   // store: new MongoStore({ mongooseConnection: mongoose.connection })
   store: MongoStore.create({ mongoUrl: process.env.MONGO_URI})
 }))
 
-//HandleBArd Helpers
-const { formatDate } = require('./helpers/hbs')
+// Handlebars Helpers
+const {
+  formatDate,
+  stripTags,
+  truncate,
+  editIcon,
+  select,
+} = require('./helpers/hbs')
 
 // Handlebars
-app.engine('.hbs', exphbs({ 
-  helpers: { 
-    formatDate,
-  }, 
-  defaultLayout: 'main', 
-  extname: '.hbs' }));
+app.engine(
+  '.hbs',
+  exphbs({
+    helpers: {
+      formatDate,
+      stripTags,
+      truncate,
+      editIcon,
+      select,
+    },
+    defaultLayout: 'main',
+    extname: '.hbs',
+  })
+)
   
 app.set('view engine', '.hbs');
 
 //Passport middleware
 app.use(passport.initialize())
 app.use(passport.session())
+
+// SEt global var
+app.use(function (req, res, next) {
+  res.locals.user = req.user || null
+  next()
+
+})
 
 // Static Foler
 app.use(express.static(path.join(__dirname, 'public')));
@@ -64,8 +85,6 @@ app.use('/stories', require('./routes/stories'));
 
 
 const PORT = process.env.PORT || 5000;
-
-
 
 app.listen(PORT, 
   console.log(`server running in ${process.env.NODE_ENV} mode on port ${PORT}`)); 
