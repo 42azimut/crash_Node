@@ -250,5 +250,18 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
 - dashboard.js  
   - `<td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>`
 
-## 1:36:58  public stories begins!  
+## 1:36:58  public stories 
 break time!!
+
+## Truncate & Strip Tags Helpers
+- helpers/hbs.js
+- formatDate: function () {}
+- truncate: function(str, len){...}
+- stripTags: function(input){
+    return input.replace(/<(.......'')
+    },
+  }
+  
+- app.js 
+  - //Handlebars Helpers >> require
+  - Handlebars // app,.engine('.hbs', exphbs({ helpers: {formatDate, truncate, stripTags }....)
