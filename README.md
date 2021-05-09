@@ -265,3 +265,6 @@ break time!!
 - app.js 
   - //Handlebars Helpers >> require
   - Handlebars // app,.engine('.hbs', exphbs({ helpers: {formatDate, truncate, stripTags }....)
+- index.hbs >> {{ stripTags (truncate body)}}
+
+
