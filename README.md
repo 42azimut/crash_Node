@@ -193,7 +193,7 @@ router.get('/dashboard', ensureAuth, (req, res) => {   //로그인한 유저(본
 
 ```
 
-## Stroy Models
+## Story Models
 - title, body, status(public, private)
 ```
 - user: {
