@@ -268,7 +268,7 @@ break time!!
 - index.hbs >> {{ stripTags (truncate body)}}
 
 
-## Edit Story
+## Edit Story(1.라우터 -> 2.view -> 3.hbs.js -> 4.app.js)
 1) 라우터 작성 : story.js 에 
   ```
   // @desc    Show edit page
@@ -290,3 +290,27 @@ break time!!
   ```
 3) helpers/ hbs.js 에서 select 함수 만들기
 
+4) app.js 헬퍼스 함수 등록하기
+
+## Method Override for PUT requests
+1) app.js 
+  require('method-override)
+
+2) npm method-override 
+
+  ```
+app.use(bodyParser.urlencoded())
+app.use(methodOverride(function (req, res) {
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method
+    delete req.body._method
+    return method
+  }
+}))
+  ```
+
+3)  routes/stoires.js
+  // @desc    Update story
+  // @route   PUT /stories/:id
+  
