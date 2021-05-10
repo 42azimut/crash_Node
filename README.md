@@ -313,4 +313,23 @@ app.use(methodOverride(function (req, res) {
 3)  routes/stoires.js
   // @desc    Update story
   // @route   PUT /stories/:id
-  
+
+
+## Method Override for DELETE requests
+// @desc    Delete story
+// @route   DELETE /stories/:id
+`await Story.remove({ _id: req.params.id })`
+
+## Single Story Page
+// @desc    Show single story
+// @route   GET /stories/:id
+```
+ let story = await Story.findById(req.params.id)
+        .populate('user')
+        .lean()
+      ...
+      ...
+  res.render('stories/show', {
+          story,
+        })
+```
