@@ -268,3 +268,25 @@ break time!!
 - index.hbs >> {{ stripTags (truncate body)}}
 
 
+## Edit Story
+1) 라우터 작성 : story.js 에 
+  ```
+  // @desc    Show edit page
+  // @route   GET /stories/edit/:id
+```
+2) view 작성 : views/edit.hbs  만들고
+  - title 값 가져와서 보여주기
+    `<input type="text" id="title" name="title" value="{{story.title}}">`
+
+  - 스토리 내용 가져와서 보여주기
+    `<textarea id="body" name="body">{{story.body}}</textarea>`
+
+  - public / private option
+  ```
+      {{#select story.status}}
+        <option value="public" selected>Public</option>
+        <option value="private">Private</option>
+      {{/select}}
+  ```
+3) helpers/ hbs.js 에서 select 함수 만들기
+
